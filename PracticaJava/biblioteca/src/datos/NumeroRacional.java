@@ -34,6 +34,8 @@ public class NumeroRacional {
         this.denominador = 1L;
     }
 
+    
+
     /**
      * Construye un nuevo {@code NumeroRacional}.
      * @param numerador valor del numerador.
@@ -111,8 +113,15 @@ public class NumeroRacional {
         sumaRacional(num);
     }
 
+    /**
+     * Metodo toString de la clase {@code NumeroRacional}.
+     * return string : numero racional transformado en string
+     */
     @Override
     public String toString(){
-        return "\n { " + numerador + "/" + denominador + " }\n";
+        if(denominador == 1L){
+            return "{ "+ numerador +" }\n";
+        }
+        return "{ " + numerador + "/" + denominador + " }\n";
     }
 }
