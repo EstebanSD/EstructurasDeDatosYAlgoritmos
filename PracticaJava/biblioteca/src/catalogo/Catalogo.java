@@ -47,6 +47,9 @@ public class Catalogo {
 	* @param capacidad : la capacidad del nuevo {@code Catalogo}.
 	*/
 	public Catalogo(int capacidad) {
+		if(capacidad > CAPACIDAD_POR_DEFECTO){
+			throw new InvalidParameterException("Capacidad mayor a 50");
+		}
 		libros = new Libro[capacidad];
 		maxCant = capacidad;
 		nroLibros = 0;
