@@ -127,14 +127,45 @@ public class NumeroRacional {
     }
 
     /**
-     * Metodo toString de la clase {@code NumeroRacional}.
+     * Override del metodo toString() para la clase {@code NumeroRacional}.
      * return string : numero racional transformado en string
      */
     @Override
     public String toString(){
         if(denominador == 1L){
-            return "{ "+ numerador +" }\n";
+            return " { "+ numerador +" } ";
         }
-        return "{ " + numerador + "/" + denominador + " }\n";
+        return " { " + numerador + "/" + denominador + " } ";
+    }
+
+    /**
+     * Override del metodo equals() para la clase {@code NumeroRacional}.
+     */
+    @Override
+    public boolean equals(Object objeto){
+        if (objeto == null){
+			return false;
+        }
+		if (objeto == this){
+			return true;
+        }
+		if (!(objeto instanceof NumeroRacional)){
+			return false;
+        }
+
+		NumeroRacional otroNumero = (NumeroRacional) objeto;
+		if (otroNumero.numerador == null && numerador != null){
+			return false;
+        }
+		if (otroNumero.denominador == null && denominador != null){
+			return false;
+        }
+		if (!otroNumero.numerador.equals(numerador)){
+			return false;
+        }
+		if (!otroNumero.denominador.equals(denominador)){
+			return false;
+        }
+		return true;
     }
 }

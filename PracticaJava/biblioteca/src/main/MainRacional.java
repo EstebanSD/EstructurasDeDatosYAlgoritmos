@@ -50,6 +50,26 @@ public class MainRacional {
         System.out.println(numero);
         numero.sumaRacional(numero5); // 1/2 + (-1/2) = 0
         System.out.println(numero);
+
+
+        /// Equals ///
+        NumeroRacional numeroEq = new NumeroRacional(0,2);
+        NumeroRacional numeroEq2 = new NumeroRacional(0L,2L);
         
+        System.out.println("Equals y == \n");
+        System.out.println(numero + " y " + numeroEq + " Son iguales usando equals? " + (numero.equals(numeroEq)));
+		System.out.println(numero + " y " + numeroEq + " Son iguales usando ==? " + (numero == numeroEq));
+        System.out.println(numero + " y " + numeroEq2 + " Son iguales usando equals? " + (numero.equals(numeroEq2)));
+		System.out.println(numero + " y " + numeroEq2 + " Son iguales usando ==? " + (numero == numeroEq2));
+        System.out.println(numeroEq + " y " + numeroEq2 + " Son iguales usando equals? " + (numeroEq.equals(numeroEq2)));
+		System.out.println(numeroEq + " y " + numeroEq2 + " Son iguales usando ==? " + (numeroEq == numeroEq2));
+		
+        System.out.println(numero4 + " y " + numero5 + " Son iguales usando equals? " + (numero4.equals(numero5)));
+		System.out.println(numero4 + " y " + numero5 + " Son iguales usando ==? " + (numero4 == numero5));
+        numero5.sumaRacional(numero4);
+        numero5.sumaRacional(numero4);
+        System.out.println(numero4 + " y " + numero5 + " Son iguales usando equals? " + (numero4.equals(numero5)));
+		System.out.println(numero4 + " y " + numero5 + " Son iguales usando ==? " + (numero4 == numero5));
+
     }
 }
