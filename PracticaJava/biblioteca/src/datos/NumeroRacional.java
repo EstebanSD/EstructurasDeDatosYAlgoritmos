@@ -86,7 +86,7 @@ public class NumeroRacional {
     //// METODOS ADICIONALES ////
 
     /**
-     * Metodo para sumar 2 numeros racionales
+     * Metodo para sumar 2 numeros racionales.
      * @param numeroRacional
      */
     public void sumaRacional(NumeroRacional numeroRacional){
@@ -98,6 +98,17 @@ public class NumeroRacional {
             denominador *= numeroRacional.getDenominador();
         }
     }
-    
+
+    /**
+     * Metodo para restar 2 numeros racionales.
+     * @param numeroRacional
+     */
+    public void restaRacional(NumeroRacional numeroRacional){
+        NumeroRacional num = new NumeroRacional();
+        num.setNumerador(numeroRacional.getNumerador()*(-1));
+        num.setDenominador(numeroRacional.getDenominador());
+
+        sumaRacional(num);
+    }
 
 }
