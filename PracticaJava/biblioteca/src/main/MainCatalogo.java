@@ -22,10 +22,10 @@ public class MainCatalogo {
 		Libro libro3 = new Libro("Jhon Katzenbach","Retrato en Sangre", 629);
 		Libro libro4 = new Libro("Nicolas Maquiavelo", "El Principe", 158);
 		Libro libro5 = new Libro("Edgar Allan Poe", "Narraciones Extraordinarias", 206);
-		Libro libro6 = new Libro("Federico Garcia Lorca", "La Casa de Bernarda Alba", 93);
+		//Libro libro6 = new Libro("Federico Garcia Lorca", "La Casa de Bernarda Alba", 93);
 		
 		//Instancia de Catalogo
-		Catalogo catalogo = new Catalogo(5); // Para tirar la excepcion
+		Catalogo catalogo = new Catalogo(5); // capacidad se redujo a 5 para tirar la excepcion
 
 
 
@@ -36,7 +36,7 @@ public class MainCatalogo {
 		catalogo.agregarLibro(libro5);
 		//catalogo.agregarLibro(libro6); // ArrayIndexOutOfBoundsException
 
-		//TODO: pruebe los métodos agregarLibro y buscarPorTitulo
+		
 		System.out.println(catalogo);
 
 		Libro libro7, libro8;
