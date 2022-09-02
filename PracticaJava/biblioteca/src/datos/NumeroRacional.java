@@ -82,4 +82,22 @@ public class NumeroRacional {
     public void setDenominador(Long denominador){
         this.denominador = denominador;
     }
+
+    //// METODOS ADICIONALES ////
+
+    /**
+     * Metodo para sumar 2 numeros racionales
+     * @param numeroRacional
+     */
+    public void sumaRacional(NumeroRacional numeroRacional){
+        if(denominador == numeroRacional.getDenominador()){
+            numerador += numeroRacional.getNumerador();
+        }
+        else{
+            numerador = (numerador*numeroRacional.getDenominador() + denominador*numeroRacional.getNumerador());
+            denominador *= numeroRacional.getDenominador();
+        }
+    }
+    
+
 }
