@@ -20,9 +20,9 @@ import java.security.InvalidParameterException;
 public class NumeroRacional {
     
     //Atributo privado para el numerador
-    private int numerador;
+    private Long numerador;
     //Atributo privado para el denominador
-    private int denominador;
+    private Long denominador;
 
     //// Constructores ////
 
@@ -30,8 +30,8 @@ public class NumeroRacional {
      * Construye un nuevo {@code NumeroRacional} por defecto, con denominador 1.
      */
     public NumeroRacional (){
-        this.numerador = 0;
-        this.denominador = 1;
+        this.numerador = 0L;
+        this.denominador = 1L;
     }
 
     /**
@@ -39,8 +39,8 @@ public class NumeroRacional {
      * @param numerador valor del numerador.
      * @param denominador valor del denominador. No puede ser cero.
      */
-    public NumeroRacional (int numerador, int denominador){
-        if(denominador == 0){
+    public NumeroRacional (Long numerador, Long denominador){
+        if(denominador == 0L){
             throw new InvalidParameterException("Denominador Cero");
         }
         else{
@@ -55,7 +55,7 @@ public class NumeroRacional {
      * Metodo Get para obtener el numerador
      * @return numerador
      */
-    public int getNumerador(){
+    public Long getNumerador(){
         return numerador;
     }
 
@@ -63,7 +63,7 @@ public class NumeroRacional {
      * Metodo Set para modificar el denominador
      * @param numerador
      */
-    public void setNumerador(int numerador){
+    public void setNumerador(Long numerador){
         this.numerador = numerador;
     }
 
@@ -71,7 +71,7 @@ public class NumeroRacional {
      * Metodo Get para obtener el denominador
      * @return denominador
      */
-    public int getDenominador(){
+    public Long getDenominador(){
         return denominador;
     }
 
@@ -79,7 +79,7 @@ public class NumeroRacional {
      * Metodo Set para modificar el denominador
      * @param denominador
      */
-    public void setDenominador(int denominador){
+    public void setDenominador(Long denominador){
         this.denominador = denominador;
     }
 }
