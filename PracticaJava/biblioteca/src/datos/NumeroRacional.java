@@ -34,7 +34,18 @@ public class NumeroRacional {
         this.denominador = 1L;
     }
 
-    
+    /**
+     * Constructor para instanciar una clase {@code NumeroRacional} con valores del tipo primitivo int.
+     * @param n valor del tipo int para el numerador.
+     * @param d valor del tipo int para el denominador.
+     */
+    public NumeroRacional (int n, int d){
+        long num = n;
+        long deno = d;
+
+        this.numerador = num;
+        this.denominador = deno;
+    }
 
     /**
      * Construye un nuevo {@code NumeroRacional}.
