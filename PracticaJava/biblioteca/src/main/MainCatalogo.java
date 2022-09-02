@@ -19,19 +19,31 @@ public class MainCatalogo {
 	public static void main(String[] args) {
 		Libro libro1 = new Libro("Isaac Asimov", "The Caves of Steel", 42);
 		Libro libro2 = new Libro("Isaac Asimov", "The Naked Sun", 47);
+		Libro libro3 = new Libro("Jhon Katzenbach","Retrato en Sangre", 629);
+		Libro libro4 = new Libro("Nicolas Maquiavelo", "El Principe", 158);
+		Libro libro5 = new Libro("Edgar Allan Poe", "Narraciones Extraordinarias", 206);
+		Libro libro6 = new Libro("Federico Garcia Lorca", "La Casa de Bernarda Alba", 93);
+		
+		//Instancia de Catalogo
+		Catalogo catalogo = new Catalogo(5); // Para tirar la excepcion
 
-		//TODO: agregue más libros
-		Catalogo catalogo = new Catalogo(10);
+
 
 		catalogo.agregarLibro(libro1);
 		catalogo.agregarLibro(libro2);
+		catalogo.agregarLibro(libro3);
+		catalogo.agregarLibro(libro4);
+		catalogo.agregarLibro(libro5);
+		//catalogo.agregarLibro(libro6); // ArrayIndexOutOfBoundsException
+
 		//TODO: pruebe los métodos agregarLibro y buscarPorTitulo
 		System.out.println(catalogo);
 
-		Libro libro3;
-		libro3 = catalogo.buscarPorTitulo("The Caves of Steel");
-
-		System.out.println(libro3);
+		Libro libro7, libro8;
+		libro7 = catalogo.buscarPorTitulo( "La Vuelta al Mundo en 80 dias"); //null
+		libro8 = catalogo.buscarPorTitulo( "The Caves of Steel");
+		System.out.println(libro7);
+		System.out.println(libro8);
 	} 
 
 }

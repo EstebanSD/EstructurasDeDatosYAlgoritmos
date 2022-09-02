@@ -1,5 +1,7 @@
 package catalogo;
 
+import java.security.InvalidParameterException;
+
 import datos.Libro;
 
 /**
@@ -26,6 +28,8 @@ public class Catalogo {
 
 	//el arreglo interno de libros.
 	private Libro[] libros;
+	//cantidad maxima de libros.
+	private int maxCant;
 	//la cantidad actual de libros almacenados.
 	private int nroLibros;
 	
@@ -33,7 +37,9 @@ public class Catalogo {
 	* Construye un nuevo {@code Catalogo} usando una capacidad de {@value #CAPACIDAD_POR_DEFECTO}.
 	*/
 	public Catalogo() {
-		nroLibros = CAPACIDAD_POR_DEFECTO;
+		libros = new Libro[CAPACIDAD_POR_DEFECTO];
+		maxCant = CAPACIDAD_POR_DEFECTO;
+		nroLibros = 0;
 	}
 	
 	/**
@@ -42,16 +48,67 @@ public class Catalogo {
 	*/
 	public Catalogo(int capacidad) {
 		libros = new Libro[capacidad];
+		maxCant = capacidad;
 		nroLibros = 0;
 	}
 	
-	
+	//// GETTERS AND SETTERS ////
+
+	/**
+	 * Metodo Get para retornar los libros asociados al catalogo
+	 * @return libros
+	 */
+	public Libro[] getLibros(){
+		return libros;
+	}
+
+	/**
+	 * Metodo Set para modificar un libro en la posicion {@code pos}
+	 * @param libro Libro a modificar
+	 * @param pos posicion en la que se encuentra el libro a modificar
+	 */
+	public void setLibros(Libro libro, int pos){
+		if(pos < 0 || nroLibros < pos){
+			throw new InvalidParameterException("Posicion invalida");
+		}
+		else{
+			this.libros[pos] = libro;
+		}	
+	}
+
+	//El metodo Set de este atributo no tiene sentido que se emplee
+	/**
+	 * Metodo Get para obtener el numero maximo de libros del {@code Catalogo}
+	 * @return maxCant 
+	 */
+	public int getMaxCant(){
+		return maxCant;
+	}
+
+	/**
+	 * Metodo Get para obtener el numero de libros del {@code Catalogo}
+	 * @return nroLibros 
+	 */
+	public int getNroLibros(){
+		return nroLibros;
+	}
+
+	/**
+	 * Metodo Set para modificar el numero de libros del {@code Catalogo}
+	 * @param nro
+	 */
+	public void setNroLibros(int nro){
+		this.nroLibros = nro;
+	}
+
+	//// METODOS ADICIONALES ////
+
 	/**
 	* Retorna {@code true} si este {@code Catalogo} no tiene más capacidad para almacenar libros.
 	* @return {@code true} sii no hay capacidad disponible.
 	*/
 	public boolean estaLleno() {
-		return nroLibros == CAPACIDAD_POR_DEFECTO;
+		return (nroLibros == maxCant);
 	}
 	
 	/**
@@ -62,7 +119,7 @@ public class Catalogo {
 	*/
 	public boolean agregarLibro(Libro libro) {
 		if(estaLleno()){
-			throw new StackOverflowError("Catalogo lleno");
+			throw new ArrayIndexOutOfBoundsException("Catalogo lleno");
 		}
 		else{
 			libros[nroLibros] = libro;
@@ -82,16 +139,13 @@ public class Catalogo {
 			throw new NullPointerException("Catalogo Vacio");
 		}
 		else{
-			try{
-				for (int i=0; i<nroLibros; i++){
-					if(titulo.equals(libros[i].getTitulo())){
-						return libros[i];
-					}
+			
+			for (int i=0; i<nroLibros; i++){
+				if(titulo.equals(libros[i].getTitulo())){
+					return libros[i];
 				}
 			}
-			catch(Exception ex){
-				System.out.println("Libro no encontrado");
-			}
+
 			return null;
 		}
 	}
