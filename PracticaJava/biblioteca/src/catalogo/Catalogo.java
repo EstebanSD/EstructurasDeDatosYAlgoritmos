@@ -33,7 +33,7 @@ public class Catalogo {
 	* Construye un nuevo {@code Catalogo} usando una capacidad de {@value #CAPACIDAD_POR_DEFECTO}.
 	*/
 	public Catalogo() {
-		this(CAPACIDAD_POR_DEFECTO);
+		nroLibros = CAPACIDAD_POR_DEFECTO;
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Catalogo {
 	* @return {@code true} sii no hay capacidad disponible.
 	*/
 	public boolean estaLleno() {
-		throw new UnsupportedOperationException("Debe implementar este método");
+		return nroLibros == CAPACIDAD_POR_DEFECTO;
 	}
 	
 	/**
@@ -61,7 +61,15 @@ public class Catalogo {
 	* @see #estaLleno()
 	*/
 	public boolean agregarLibro(Libro libro) {
-		throw new UnsupportedOperationException("Debe implementar este método (el Libro debe ser agregado al final)");
+		if(estaLleno()){
+			throw new StackOverflowError("Catalogo lleno");
+		}
+		else{
+			libros[nroLibros] = libro;
+			nroLibros += 1;
+
+			return true;
+		}
 	}
 	
 	/**
@@ -70,12 +78,36 @@ public class Catalogo {
 	* @return un libro {@code l} que pertenece a este {@code Catalogo} sii {@code l.titulo().equals(titulo)}, {@code null} en caso contrario.
 	*/
 	public Libro buscarPorTitulo(String titulo) {
-		throw new UnsupportedOperationException("Debe implementar este método");
+		if(nroLibros == 0){
+			throw new NullPointerException("Catalogo Vacio");
+		}
+		else{
+			try{
+				for (int i=0; i<nroLibros; i++){
+					if(titulo.equals(libros[i].getTitulo())){
+						return libros[i];
+					}
+				}
+			}
+			catch(Exception ex){
+				System.out.println("Libro no encontrado");
+			}
+			return null;
+		}
 	}
+
 	
 	@Override
 	public String toString() {
-		throw new UnsupportedOperationException("Debe implementar este método (debe usar el método toString() de Libro)");
+		String cadenaLibros = new String();
+		
+		cadenaLibros = "";
+		for (int i=0; i<nroLibros; i++){
+			cadenaLibros += libros[i].toString() + "\n";
+		}
+		
+		return "Catalogo [ \n" + cadenaLibros + "\n NumLibros: "+ nroLibros +" ]";
+
 	}
 	
 

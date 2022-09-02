@@ -43,7 +43,7 @@ public class Libro {
 	* Define el autor de este Libro.
 	* @param autor : el nuevo autor de este Libro.
 	*/
-	public void autor(String autor) {
+	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 	
@@ -51,7 +51,7 @@ public class Libro {
 	* Retorna el autor asociado a este Libro.
 	* @return el autor.
 	*/
-	public String autor() {
+	public String getAutor() {
 		return autor;
 	}
 	
@@ -59,7 +59,7 @@ public class Libro {
 	* Define el título de este Libro.
 	* @param titulo : el nuevo título de este Libro.
 	*/
-	public void titulo(String titulo) {
+	public void setTitulo(String titulo) {
 		this.autor = titulo;
 	}
 	
@@ -67,7 +67,7 @@ public class Libro {
 	* Retorna el título asociado a este Libro.
 	* @return el título.
 	*/
-	public String titulo() {
+	public String getTitulo() {
 		return titulo;
 	}
 	
@@ -75,7 +75,7 @@ public class Libro {
 	* Define el número de páginas de este Libro.
 	* @param nroPaginas : el nuevo número de páginas de este Libro.
 	*/
-	public void nroPaginas(int nroPaginas) {
+	public void setNroPaginas(int nroPaginas) {
 		this.nroPaginas = nroPaginas;
 	}
 	
@@ -83,13 +83,13 @@ public class Libro {
 	* Retorna el número de páginas asociado a este Libro.
 	* @return el número de páginas.
 	*/
-	public int nroPaginas() {
+	public int getNroPaginas() {
 		return nroPaginas;
 	}
 	
 	@Override
 	public String toString() {
-		return "Libro[ Autor: "+ autor + " Titulo: "+ titulo + " NroPaginas: "+ nroPaginas +"]";
+		return "Libro { Autor: "+ autor + " ,Titulo: "+ titulo + " ,NroPaginas: "+ nroPaginas +" }";
 	}
 	
 	@Override

@@ -19,10 +19,19 @@ public class MainCatalogo {
 	public static void main(String[] args) {
 		Libro libro1 = new Libro("Isaac Asimov", "The Caves of Steel", 42);
 		Libro libro2 = new Libro("Isaac Asimov", "The Naked Sun", 47);
+
 		//TODO: agregue más libros
 		Catalogo catalogo = new Catalogo(10);
+
+		catalogo.agregarLibro(libro1);
+		catalogo.agregarLibro(libro2);
 		//TODO: pruebe los métodos agregarLibro y buscarPorTitulo
-		System.out.println("Catalogo:\n" + catalogo);
+		System.out.println(catalogo);
+
+		Libro libro3;
+		libro3 = catalogo.buscarPorTitulo("The Caves of Steel");
+
+		System.out.println(libro3);
 	} 
 
 }
