@@ -111,4 +111,8 @@ public class NumeroRacional {
         sumaRacional(num);
     }
 
+    @Override
+    public String toString(){
+        return "\n { " + numerador + "/" + denominador + " }\n";
+    }
 }
