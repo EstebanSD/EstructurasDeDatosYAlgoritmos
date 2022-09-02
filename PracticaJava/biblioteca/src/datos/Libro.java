@@ -89,7 +89,7 @@ public class Libro {
 	
 	@Override
 	public String toString() {
-		throw new UnsupportedOperationException("Debe implementar este método");
+		return "Libro[ Autor: "+ autor + " Titulo: "+ titulo + " NroPaginas: "+ nroPaginas +"]";
 	}
 	
 	@Override
