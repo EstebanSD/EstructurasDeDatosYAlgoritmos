@@ -117,11 +117,13 @@ public class NumeroRacional {
      * @param numeroRacional
      */
     public void restaRacional(NumeroRacional numeroRacional){
-        NumeroRacional num = new NumeroRacional();
-        num.setNumerador(numeroRacional.getNumerador()*(-1));
-        num.setDenominador(numeroRacional.getDenominador());
-
-        sumaRacional(num);
+        if(denominador == numeroRacional.getDenominador()){
+            numerador -= numeroRacional.getNumerador();
+        }
+        else{
+            numerador = (numerador*numeroRacional.getDenominador() - denominador*numeroRacional.getNumerador());
+            denominador *= numeroRacional.getDenominador();
+        }
     }
 
     /**
