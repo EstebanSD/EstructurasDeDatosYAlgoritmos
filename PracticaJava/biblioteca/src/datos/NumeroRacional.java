@@ -20,9 +20,9 @@ import java.security.InvalidParameterException;
 public class NumeroRacional {
     
     //Atributo privado para el numerador
-    private Long numerador;
+    private long numerador;
     //Atributo privado para el denominador
-    private Long denominador;
+    private long denominador;
 
     //// Constructores ////
 
@@ -30,21 +30,7 @@ public class NumeroRacional {
      * Construye un nuevo {@code NumeroRacional} por defecto, con denominador 1.
      */
     public NumeroRacional (){
-        this.numerador = 0L;
-        this.denominador = 1L;
-    }
-
-    /**
-     * Constructor para instanciar una clase {@code NumeroRacional} con valores del tipo primitivo int.
-     * @param n valor del tipo int para el numerador.
-     * @param d valor del tipo int para el denominador.
-     */
-    public NumeroRacional (int n, int d){
-        long num = n;
-        long deno = d;
-
-        this.numerador = num;
-        this.denominador = deno;
+        this.denominador = 1;
     }
 
     /**
@@ -52,8 +38,8 @@ public class NumeroRacional {
      * @param numerador valor del numerador.
      * @param denominador valor del denominador. No puede ser cero.
      */
-    public NumeroRacional (Long numerador, Long denominador){
-        if(denominador == 0L){
+    public NumeroRacional (long numerador, long denominador){
+        if(denominador == 0){
             throw new InvalidParameterException("Denominador Cero");
         }
         else{
@@ -68,7 +54,7 @@ public class NumeroRacional {
      * Metodo Get para obtener el numerador
      * @return numerador
      */
-    public Long getNumerador(){
+    public long getNumerador(){
         return numerador;
     }
 
@@ -76,7 +62,7 @@ public class NumeroRacional {
      * Metodo Set para modificar el denominador
      * @param numerador
      */
-    public void setNumerador(Long numerador){
+    public void setNumerador(long numerador){
         this.numerador = numerador;
     }
 
@@ -84,7 +70,7 @@ public class NumeroRacional {
      * Metodo Get para obtener el denominador
      * @return denominador
      */
-    public Long getDenominador(){
+    public long getDenominador(){
         return denominador;
     }
 
@@ -92,7 +78,7 @@ public class NumeroRacional {
      * Metodo Set para modificar el denominador
      * @param denominador
      */
-    public void setDenominador(Long denominador){
+    public void setDenominador(long denominador){
         this.denominador = denominador;
     }
 
@@ -102,28 +88,36 @@ public class NumeroRacional {
      * Metodo para sumar 2 numeros racionales.
      * @param numeroRacional
      */
-    public void sumaRacional(NumeroRacional numeroRacional){
-        if(denominador == numeroRacional.getDenominador()){
-            numerador += numeroRacional.getNumerador();
+    public NumeroRacional sumaRacional(NumeroRacional numeroRacional){
+        NumeroRacional auxiliar = new NumeroRacional(this.numerador, this.denominador);
+        
+        if(auxiliar.denominador == numeroRacional.denominador){
+            auxiliar.numerador += numeroRacional.numerador;
         }
         else{
-            numerador = (numerador*numeroRacional.getDenominador() + denominador*numeroRacional.getNumerador());
-            denominador *= numeroRacional.getDenominador();
+            auxiliar.numerador = (auxiliar.numerador*numeroRacional.denominador + auxiliar.denominador*numeroRacional.numerador);
+            auxiliar.denominador *= numeroRacional.denominador;
         }
+        
+        return auxiliar;
     }
 
     /**
      * Metodo para restar 2 numeros racionales.
      * @param numeroRacional
      */
-    public void restaRacional(NumeroRacional numeroRacional){
-        if(denominador == numeroRacional.getDenominador()){
-            numerador -= numeroRacional.getNumerador();
+    public NumeroRacional restaRacional(NumeroRacional numeroRacional){
+	NumeroRacional auxiliar = new NumeroRacional(this.numerador, this.denominador);
+        
+        if(auxiliar.denominador == numeroRacional.denominador){
+            auxiliar.numerador -= numeroRacional.numerador;
         }
         else{
-            numerador = (numerador*numeroRacional.getDenominador() - denominador*numeroRacional.getNumerador());
-            denominador *= numeroRacional.getDenominador();
+            auxiliar.numerador = (auxiliar.numerador*numeroRacional.denominador - auxiliar.denominador*numeroRacional.numerador);
+            auxiliar.denominador *= numeroRacional.denominador;
         }
+        
+        return auxiliar;
     }
 
     /**
@@ -132,7 +126,7 @@ public class NumeroRacional {
      */
     @Override
     public String toString(){
-        if(denominador == 1L){
+        if(denominador == 1 || numerador == 0){
             return " { "+ numerador +" } ";
         }
         return " { " + numerador + "/" + denominador + " } ";
@@ -143,29 +137,18 @@ public class NumeroRacional {
      */
     @Override
     public boolean equals(Object objeto){
-        if (objeto == null){
-			return false;
-        }
-		if (objeto == this){
-			return true;
-        }
+	
 		if (!(objeto instanceof NumeroRacional)){
 			return false;
         }
-
-		NumeroRacional otroNumero = (NumeroRacional) objeto;
-		if (otroNumero.numerador == null && numerador != null){
-			return false;
+		else{
+			NumeroRacional otroNumero = (NumeroRacional) objeto;
+	
+			return (otroNumero.numerador * denominador == numerador * otroNumero.denominador);
+	
         }
-		if (otroNumero.denominador == null && denominador != null){
-			return false;
-        }
-		if (!otroNumero.numerador.equals(numerador)){
-			return false;
-        }
-		if (!otroNumero.denominador.equals(denominador)){
-			return false;
-        }
-		return true;
+	
+	
     }
+
 }
