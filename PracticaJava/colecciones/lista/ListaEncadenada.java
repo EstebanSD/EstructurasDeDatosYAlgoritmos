@@ -22,8 +22,7 @@ public class ListaEncadenada<T> implements Lista<T>{
 	 * @param cant : cantidad
 	 */
 	public ListaEncadenada(Nodo<T> puntero){
-		this.puntero = puntero;
-		this.cant = 1;
+		this.puntero = new Nodo<T>(puntero.getInfo(),null);
 	}
 	
 	//// GETTERS AND SETTERS ////
@@ -33,7 +32,8 @@ public class ListaEncadenada<T> implements Lista<T>{
 		return puntero;
 	}
 
-	public void setPuntero(Nodo<T> puntero){
+	//Metodo SET de la clase, pero que para esta implementacion, funciona como un insertar a la cabeza
+	private void setPuntero(Nodo<T> puntero){
 		this.puntero = puntero;
 	}
 	
@@ -108,6 +108,7 @@ public class ListaEncadenada<T> implements Lista<T>{
 			}
 			
 			actual.setSiguiente(aux);
+			this.cant += 1;
 
 			while (aux.getSiguiente() != null){
 				aux = aux.getSiguiente();
@@ -126,6 +127,31 @@ public class ListaEncadenada<T> implements Lista<T>{
 	* @throws IndexOutOfBoundsException si {@code indice} &lt; {@code 0}
 	*/
 	public boolean insertar(T elem, int indice){
+		if(indice < 0 || elementos()<= indice){
+			throw new IndexOutOfBoundsException("Indice fuera de rango");
+		}
+		if(indice == 0){
+			Nodo<T> nuevo = new Nodo<>(elem,puntero);
+
+			setPuntero(nuevo);
+			this.cant += 1;
+		
+			return true;
+		}	
+
+		Nodo<T> nuevo = new Nodo<>(elem,null);
+		Nodo<T> aux = new Nodo<>();
+
+		aux = puntero;
+		
+		for(int i=0; i<indice-1; i++){
+			aux = aux.getSiguiente();
+		}
+
+		nuevo.setSiguiente(aux.getSiguiente());
+		aux.setSiguiente(nuevo);
+		cant += 1;
+
 		return true;
 	}
 
@@ -137,27 +163,31 @@ public class ListaEncadenada<T> implements Lista<T>{
 	* @see #elementos() 
 	*/
 	public T eliminar(int indice){
-		/*ListaEncadenada<T> actual = new ListaEncadenada<T>();
-		int i;
-
-		if(indice < 0){
-			throw new IndexOutOfBoundsException("Indice menor a Cero");
+		if(indice < 0 || elementos()<= indice){
+			throw new IndexOutOfBoundsException("Indice fuera de Rango");
 		}
 
-		actual = this.siguiente;
-		i = 0;
-		while(actual != null && i<indice){
-			actual = actual.siguiente;
-			i ++;
+		Nodo<T> eliminado = new Nodo<>();
+		
+		if(indice == 0){
+			eliminado = puntero;
+			setPuntero(puntero.getSiguiente());
+			cant -= 1;
+			return eliminado.getInfo();
 		}
 
-		if(actual == null){
-			throw new IndexOutOfBoundsException("Indice mayor a #elementos");
+		Nodo<T> aux = new Nodo<>();
+
+		aux = puntero;
+		for(int i=0; i<indice-1; i++){
+			aux = aux.getSiguiente();
 		}
-		else{
-			
-		}*/
-		return puntero.getInfo();
+
+		eliminado = aux.getSiguiente();
+		aux.setSiguiente(eliminado.getSiguiente());
+		cant -= 1;
+
+		return eliminado.getInfo();
 	}
 	
 	/**
