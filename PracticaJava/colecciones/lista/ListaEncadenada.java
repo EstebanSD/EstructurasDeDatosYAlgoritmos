@@ -80,9 +80,6 @@ public class ListaEncadenada<T> implements Lista<T>{
 	* @return {@code true} sii todos los elementos en {@code otraLista} fueron agregados
 	*/
 	public boolean agregarTodos(Lista<T> otraLista){
-		//if (!(otraLista instanceof ListaEncadenada<T>)){
-		//	return false;
-		//}
 		ListaEncadenada<T> SegundaLista = (ListaEncadenada<T>) otraLista;
 		Nodo<T> aux = SegundaLista.getPuntero();
 
@@ -127,7 +124,7 @@ public class ListaEncadenada<T> implements Lista<T>{
 	* @throws IndexOutOfBoundsException si {@code indice} &lt; {@code 0}
 	*/
 	public boolean insertar(T elem, int indice){
-		if(indice < 0 || elementos()<= indice){
+		if(indice < 0 || cant<= indice){
 			throw new IndexOutOfBoundsException("Indice fuera de rango");
 		}
 		if(indice == 0){
@@ -163,7 +160,7 @@ public class ListaEncadenada<T> implements Lista<T>{
 	* @see #elementos() 
 	*/
 	public T eliminar(int indice){
-		if(indice < 0 || elementos()<= indice){
+		if(indice < 0 || cant<= indice){
 			throw new IndexOutOfBoundsException("Indice fuera de Rango");
 		}
 
@@ -198,17 +195,15 @@ public class ListaEncadenada<T> implements Lista<T>{
 	* @see #elementos() 
 	*/
 	public T obtener(int indice){
-		if(indice < 0){
-			throw new IndexOutOfBoundsException("Indice negativo");
+		if(indice < 0 || cant<=indice){
+			throw new IndexOutOfBoundsException("Indice fuera de Rango");
 		}
-		if(indice >= cant){
-			throw new IndexOutOfBoundsException("El indice excede el numero de elmentos");
-		}
-		if(indice == 0 && puntero.getSiguiente()==null){
+		if(indice == 0){
 			return puntero.getInfo();
 		}
 
-		Nodo<T> aux = this.puntero.getSiguiente();
+		Nodo<T> aux = puntero;
+		
 		for(int i=0; i<indice;i++){
 			aux = aux.getSiguiente();
 		}
@@ -225,7 +220,29 @@ public class ListaEncadenada<T> implements Lista<T>{
 	* @see #elementos() 
 	*/
 	public Lista<T> subLista(int desdeInd, int hastaInd){
-		return null;
+		if(desdeInd<0 || cant<=hastaInd || desdeInd>hastaInd){
+			throw new IndexOutOfBoundsException("Indices fuera de Rango");
+		}
+
+		ListaEncadenada<T> nuevaLista = new ListaEncadenada<>();
+		
+		if( desdeInd == hastaInd ){
+			return nuevaLista; //Retorno la lista vacia
+		}
+
+		Nodo<T> aux = puntero;
+		for(int i=0; i<desdeInd; i++){ //Me paro en el elemento 'desdeInd'
+			aux = aux.getSiguiente();
+		}
+
+		nuevaLista.agregar(aux.getInfo());
+
+		for(int i=desdeInd; i<hastaInd-1; i++){
+			aux = aux.getSiguiente();
+			nuevaLista.agregar(aux.getInfo());
+		}
+
+		return nuevaLista;
 	}
 
 	/**

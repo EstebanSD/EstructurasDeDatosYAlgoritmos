@@ -71,6 +71,35 @@ public class MainLista {
         System.out.println(listaDeInteger.eliminar(2));;//Elimina en la pos=3 y muestra el eliminado
         System.out.println(listaDeInteger);
         
+        /// Obtener ///
+        ListaEncadenada<Character> listaDeChar = new ListaEncadenada<>();
+        listaDeChar.agregar('E');
+        listaDeChar.agregar('s');
+        listaDeChar.agregar('t');
+        listaDeChar.agregar('a');
+        listaDeChar.agregar('E');
+        listaDeChar.agregar('s');
+        listaDeChar.agregar('U');
+        listaDeChar.agregar('n');
+        listaDeChar.agregar('a');
+        listaDeChar.agregar('L');
+        listaDeChar.agregar('i');
+        listaDeChar.agregar('s');
+        listaDeChar.agregar('t');
+        listaDeChar.agregar('a');
+        System.out.println(listaDeChar);
+        System.out.println(listaDeChar.obtener(0));//Obtiene el primer elemento 'E'
+        System.out.println(listaDeChar.obtener(5));//Obtiene el 6to elemento 's'
 
+        /// SubLista ///
+        ListaEncadenada<Character> listaDeChar2 = new ListaEncadenada<>();
+
+        //listaDeChar2 = (ListaEncadenada<Character>) listaDeChar.subLista(3, 0);//Indices Fuera de Rango
+        //listaDeChar2 = (ListaEncadenada<Character>) listaDeChar.subLista(0, 0);//Lista Vacia
+        listaDeChar2 = (ListaEncadenada<Character>) listaDeChar.subLista(4, 9);    
+        System.out.println(listaDeChar2);
+        //System.out.println(listaDeChar);//La Lista Original queda intacta
+    
+    
     } 
 }
