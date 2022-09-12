@@ -252,11 +252,8 @@ public class ListaEncadenada<T> implements Lista<T>{
 	*/
 	public boolean contiene(T elem){
 		
-		if(puntero == null && elem==null){
-			return true;
-		}
-		
-		Nodo<T> aux = puntero.getSiguiente();
+		Nodo<T> aux = puntero;
+
 		while(aux != null){
 			if(aux.getInfo()==null && elem==null){
 				return true;
@@ -329,7 +326,26 @@ public class ListaEncadenada<T> implements Lista<T>{
 	*/
 	@Override
 	public boolean equals(Object otro){
-		return false;
+		if(!(otro instanceof ListaEncadenada)){
+			return false;
+		}
+		
+		ListaEncadenada<T> nuevoOtro = (ListaEncadenada<T>) otro;
+		if(this.cant != nuevoOtro.cant){
+			return false;
+		}
+		
+		Nodo<T> aux1 = puntero;
+		Nodo<T> aux2 = nuevoOtro.getPuntero();
+		while(aux1 != null){
+			if(!(aux2.equals(aux1))){
+				return false;
+			}
+			aux1 = aux1.getSiguiente();
+			aux2 = aux2.getSiguiente();
+		}
+
+		return true;
 	}
 
 }

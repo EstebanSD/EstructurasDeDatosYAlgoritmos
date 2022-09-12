@@ -34,4 +34,22 @@ public class Nodo<T> {
         this.siguiente = siguiente;
     }
 
+    @Override
+    public boolean equals (Object otro){
+        if(otro == null){
+            return false;
+        }
+        if(otro == this){
+            return true;
+        }
+        if(!(otro instanceof Nodo)){
+            return false;
+        }
+
+        Nodo<T> nuevoNodo = (Nodo<T>) otro;
+        if(nuevoNodo.info == null && info != null){
+            return false;
+        }
+        return nuevoNodo.getInfo().equals(info);
+    }
 }

@@ -47,13 +47,9 @@ public class MainLista {
         /// Insertar Pos ///
         ListaEncadenada<Integer> listaDeInteger = new ListaEncadenada<>();
 
-        Integer integer1 = 20;
-        Integer integer2 = 5;
-        Integer integer3 = -7;
-
-        listaDeInteger.agregar(integer1);
-        listaDeInteger.agregar(integer2);
-        listaDeInteger.agregar(integer3);
+        listaDeInteger.agregar(20);
+        listaDeInteger.agregar(5);
+        listaDeInteger.agregar(-7);
 
         System.out.println(listaDeInteger);
         //listaDeInteger.insertar(8, -1);//Indice fuera de rango
@@ -100,6 +96,32 @@ public class MainLista {
         System.out.println(listaDeChar2);
         //System.out.println(listaDeChar);//La Lista Original queda intacta
     
+        
+        /// Contiene ///
+        listaDeInteger.agregar(4);
+        listaDeInteger.agregar(10);
+        listaDeInteger.agregar(-98);
     
+        System.out.println(listaDeInteger.contiene(-7));//True
+        System.out.println(listaDeInteger.contiene(5));//False
+
+        /// Vaciar ///
+        System.out.println(listaDeString);
+        listaDeString.vaciar();
+        System.out.println(listaDeString);
+
+        /// Es Vacia ///
+        System.out.println(listaDeChar.esVacia());//False
+        System.out.println(listaDeString.esVacia());//True
+
+        /// Equals ///
+        System.out.println(listaDeString.equals(listaDeString));
+        System.out.println(listaDeString.equals(listaDeChar));
+        System.out.println(listaDeChar.equals(listaDeChar2));
+
+        ListaEncadenada<Character> listaDeChar3 = (ListaEncadenada<Character>) listaDeChar.subLista(4, 9);
+        System.out.println(listaDeChar3.equals(listaDeChar2));
+
+
     } 
 }
