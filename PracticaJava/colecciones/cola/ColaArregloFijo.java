@@ -28,8 +28,9 @@ public class ColaArregloFijo<T> implements Cola<T> {
 	* @throws IllegalArgumentException si {@code capacidad} es menor o igual a 0 
 	*/
 	public ColaArregloFijo(int capacidad) {
-		if (capacidad <= 0)
-			throw new IllegalArgumentException("la capacidad debe ser un numero positivo (" + capacidad + ")");
+		if (capacidad <= 0 || capacidad >= CAPACIDAD_POR_DEFECTO)
+			throw new IllegalArgumentException("la capacidad debe ser un numero positivo (" + capacidad + ") y menor a " + CAPACIDAD_POR_DEFECTO);
+			
 		arreglo = new Object[capacidad];
 	}
 
@@ -48,19 +49,49 @@ public class ColaArregloFijo<T> implements Cola<T> {
 		}
 	}
 
-	@Override
-	public boolean esVacia() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+	//// GETTERS AND SETTERS ////
+	
+	public Object[] getArreglo() {
+		return arreglo;
 	}
 
+	public void setArreglo(Object objeto, int posicion){
+		if(posicion<0 || posicion>=elementos){
+			throw new IllegalArgumentException("Posicion no Valida");
+		}
+		arreglo[posicion] = objeto;
+	}
+		
+	public int getElementos() {
+		return elementos;
+	}
+	
+	public void setElementos(int elementos){
+		if(elementos<0 || elementos>CAPACIDAD_POR_DEFECTO){
+						throw new IllegalArgumentException("Cantidad de elementos no Valido");
+		}
+		
+		this.elementos = elementos;
+	}
+
+	//// IMPLEMENTACION DE COLA ////
+	
+	
 	@Override
-	public int elementos() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");
+	public boolean esVacia() {
+		return (elementos == 0);
 	}
 
 	@Override
 	public boolean encolar(T elem) {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");		
+		if(elementos == CAPACIDAD_POR_DEFECTO){
+			throw new IllegalArgumentException("Cola llena");
+		}		
+		
+		arreglo[elementos] = elem;
+		elementos += 1;
+		
+		return true;
 	}
 
 	@Override
