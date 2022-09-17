@@ -19,8 +19,8 @@ public class MainRacional {
 	NumeroRacional resultadoSuma = new NumeroRacional();
 	NumeroRacional resultadoResta = new NumeroRacional();
         NumeroRacional numero = new NumeroRacional(); // 0/1 = 0
-        NumeroRacional numero2 = new NumeroRacional(1,2);
-        NumeroRacional numero3 = new NumeroRacional(-1,2);
+        //NumeroRacional numero2 = new NumeroRacional(1,2);
+        //NumeroRacional numero3 = new NumeroRacional(-1,2);
         NumeroRacional numero4 = new NumeroRacional(2,2);
         NumeroRacional numero5 = new NumeroRacional(-2,2);
         //NumeroRacional numero6 = new NumeroRacional(1,0); // InvalidParameterException

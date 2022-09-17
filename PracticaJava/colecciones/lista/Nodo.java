@@ -33,7 +33,8 @@ public class Nodo<T> {
     public void setSiguiente(Nodo<T> siguiente){
         this.siguiente = siguiente;
     }
-
+    
+    @SuppressWarnings("unchecked")
     @Override
     public boolean equals (Object otro){
         if(otro == null){

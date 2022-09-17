@@ -61,7 +61,7 @@ public class PilaEnlazada<T> implements Pila<T> {
     
     @Override
     public boolean esVacia() {
-        return (cant == 0);
+        return (cant == 0); //Aunque con (cabeza.getNext == null) se obtiene el mismo resultado
     }
 
     @Override
@@ -132,8 +132,8 @@ public class PilaEnlazada<T> implements Pila<T> {
 
     /// IMPLEMENTACION PARTICULAR PARA EL EJERCICIO ///
     /**
-     * Metodo que dada una {@code PilaEnlazada<T>} imprime todos los elementos en orden inverso.
-     * @param pila
+     * Metodo que dado un {@code NodoPila<T>} imprime todos los elementos en orden inverso.
+     * @param nodo
      */
     public void reversa(NodoPila<T> nodo){
         if(nodo == null){

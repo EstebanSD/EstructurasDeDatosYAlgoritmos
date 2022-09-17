@@ -128,7 +128,7 @@ public class ListaDeCompras {
 				System.err.println("El commando " + AGREGAR.opcion() + " espera un argumento especificando el producto a agregar.");
 				return false;
 			}
-			String producto = args[1];
+			//String producto = args[1];
 			//TODO: agregar el producto a la lista de productos.
 			return false;
 		} else if (comando.compareToIgnoreCase(LISTAR.opcion()) == 0) {
