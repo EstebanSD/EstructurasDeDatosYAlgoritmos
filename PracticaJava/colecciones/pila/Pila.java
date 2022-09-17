@@ -39,26 +39,26 @@ public interface Pila<T> {
 	public T desapilar();
 
 	/**
-	* Retorna el primero de la pila, si ésta no es vacía.
+	* Retorna el tope de la pila, si ésta no es vacía.
 	* @return primer elemento de la pila
 	* @throws IllegalStateException si la pila está vacía
 	* @see #esVacia()
 	*/
-	public T primero();
+	public T tope();
 
 	/**
-	* Remueve todos los elementos en la cola.
+	* Remueve todos los elementos en la pila.
 	*/
 	public void vaciar();
 
 	/**
-	* @return cantidad de elementos en la cola.
+	* @return cantidad de elementos en la pila.
 	*/
 	public int elementos();
 
 	/**
 	* Invariante de clase.
-	* @return {@code true} sii la cola satisface su invariante de clase
+	* @return {@code true} sii la pila satisface su invariante de clase
 	*/
 	public boolean repOK();
 
