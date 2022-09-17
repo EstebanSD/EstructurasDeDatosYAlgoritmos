@@ -13,13 +13,16 @@ public class ColaArregloFijo<T> implements Cola<T> {
 	*/
 	public static final int CAPACIDAD_POR_DEFECTO = 20;
 	private Object[] arreglo;
-	private int elementos = 0;
+	private int elementos;
+	private int maxElem;
 
 	/**
 	* Construye una nueva cola vacía con una capacidad máxima de {@value #CAPACIDAD_POR_DEFECTO}.
 	*/
 	public ColaArregloFijo() {
-		this(CAPACIDAD_POR_DEFECTO);
+		arreglo = new Object[CAPACIDAD_POR_DEFECTO];
+		elementos = 0;
+		maxElem = CAPACIDAD_POR_DEFECTO;
 	}
 
 	/**
@@ -28,10 +31,12 @@ public class ColaArregloFijo<T> implements Cola<T> {
 	* @throws IllegalArgumentException si {@code capacidad} es menor o igual a 0 
 	*/
 	public ColaArregloFijo(int capacidad) {
-		if (capacidad <= 0 || capacidad >= CAPACIDAD_POR_DEFECTO)
-			throw new IllegalArgumentException("la capacidad debe ser un numero positivo (" + capacidad + ") y menor a " + CAPACIDAD_POR_DEFECTO);
-			
+		if (capacidad <= 0 || capacidad >= CAPACIDAD_POR_DEFECTO){
+			throw new IllegalArgumentException("la capacidad debe ser un numero positivo y menor a " + CAPACIDAD_POR_DEFECTO + ", y el valor: (" + capacidad + ") no lo es.");
+		}
 		arreglo = new Object[capacidad];
+		elementos = 0;
+		maxElem = capacidad;
 	}
 
 	/**
@@ -47,10 +52,11 @@ public class ColaArregloFijo<T> implements Cola<T> {
 		for (T e : elems) {
 			encolar(e);	
 		}
+		maxElem = elementos = elems.size();
 	}
 
 	//// GETTERS AND SETTERS ////
-	
+	/*
 	public Object[] getArreglo() {
 		return arreglo;
 	}
@@ -73,7 +79,7 @@ public class ColaArregloFijo<T> implements Cola<T> {
 		
 		this.elementos = elementos;
 	}
-
+	*/
 	//// IMPLEMENTACION DE COLA ////
 	
 	
@@ -84,7 +90,7 @@ public class ColaArregloFijo<T> implements Cola<T> {
 
 	@Override
 	public boolean encolar(T elem) {
-		if(elementos == CAPACIDAD_POR_DEFECTO){
+		if(elementos == maxElem){
 			throw new IllegalArgumentException("Cola llena");
 		}		
 		
@@ -94,34 +100,88 @@ public class ColaArregloFijo<T> implements Cola<T> {
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T desencolar() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");
+		if(esVacia()){
+			throw new IllegalStateException("Cola vacia");
+		}
+	
+		T aux = (T) arreglo[0];
+	
+		for (int i=0; i<elementos-1; i++) {
+			arreglo[i] = arreglo[i+1];
+		}
+		elementos -= 1;
+
+		return aux;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T primero() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+		if(esVacia()){
+			throw new IllegalStateException("Cola vacia");
+		}
+
+		return (T) arreglo[0];
 	}
 
 	@Override
 	public void vaciar() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+		elementos = 0;
+	}
+
+	@Override
+	public int elementos(){
+		return elementos;
 	}
 
 	@Override
 	public boolean repOK() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+		return true; //No se que hace	
 	}
 
 	@Override
 	public String toString() {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+		if(esVacia()){
+			return "{ }";
+		}
+
+		String cadena = "{ ";
+
+		for(int i=0; i<elementos-1; i++){
+			cadena += arreglo[i] + ", ";
+		}
+		cadena += arreglo[elementos-1];
+		cadena += " }";
+
+		return cadena;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object other) {
-		throw new UnsupportedOperationException("Implementar y eliminar esta sentencia");	
+		if(other == null && this != null){
+			return false;
+		}
+		if(!(other instanceof ColaArregloFijo)){
+			return false;
+		}
+
+		ColaArregloFijo<T> nuevaCola = (ColaArregloFijo<T>) other;
+		if(elementos != nuevaCola.elementos()){
+			return false;
+		}
+		else{
+			for(int i=0; i<elementos-1; i++){
+				if(arreglo[i] != nuevaCola.arreglo[i]){
+					return false;
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	/**
@@ -129,8 +189,11 @@ public class ColaArregloFijo<T> implements Cola<T> {
 	* @param index el indice del elemento a obtener
 	*/
 	@SuppressWarnings("unchecked")
-   	private T elemento(int index) {
-        	return (T) arreglo[index];
-    	}
+   	public T elemento(int index) {
+		if(index<0 || index>=elementos){
+			throw new IndexOutOfBoundsException("Posicion no valida");
+		}
+        return (T) arreglo[index];
+    }
 
 }

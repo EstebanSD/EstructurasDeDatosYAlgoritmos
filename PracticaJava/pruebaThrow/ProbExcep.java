@@ -25,6 +25,7 @@ public class ProbExcep {
 	private void metodo3() throws Exception{
 		try {
 			int division = 1/0;
+			System.out.println(division);
 		}
 		catch (Exception e){
 			throw e;
